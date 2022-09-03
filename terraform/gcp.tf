@@ -1,9 +1,8 @@
 provider "google" {
   credentials = file("terraform-sa-key.json")
   project     = var.gcp_project_id
-  region      = "us-central1"
-  zone        = "us-central1-c"
-  version     = "~> 3.38"
+  region      = "europe-west4"
+  zone        = "europe-west4-a"
 }
 
 # IP ADDRESS
@@ -33,7 +32,7 @@ resource "google_compute_firewall" "allow_http" {
 
 # OS IMAGE
 data "google_compute_image" "cos_image" {
-  family  = "cos-81-lts"
+  family  = "cos-97-lts"
   project = "cos-cloud"
 }
 
@@ -41,7 +40,7 @@ data "google_compute_image" "cos_image" {
 resource "google_compute_instance" "instance" {
   name         = "${var.app_name}-vm-${terraform.workspace}"
   machine_type = var.gcp_machine_type
-  zone         = "us-central1-a"
+  zone         = "europe-west4-a"
 
   tags = google_compute_firewall.allow_http.target_tags
 
