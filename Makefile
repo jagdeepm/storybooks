@@ -85,4 +85,4 @@ deploy: check-env
 	-$(MAKE) ssh-cmd CMD='docker container stop $(CONTAINER_NAME)'
 	-$(MAKE) ssh-cmd CMD='docker container rm $(CONTAINER_NAME)'
 	@echo "starting new container..."
-	@$(MAKE) ssh-cmd CMD='docker run -d --name=$(CONTAINER_NAME) --restart=unless-stopped -p 80:3000 -e PORT=3000 -e \"MONGO_URI=mongodb+srv://jagdeepm:46MTXE2OVtfZTAIB@cluster0.diefis5.mongodb.net/?retryWrites=true&w=majority\" -e GOOGLE_CLIENT_ID=$(OAUTH_CLIENT_ID) -e GOOGLE_CLIENT_SECRET=$(call get-secret,google_oauth_client_secret) $(REMOTE_TAG)'
+	@$(MAKE) ssh-cmd CMD='docker run -d --name=$(CONTAINER_NAME) --restart=unless-stopped -p 80:3000 -e PORT=3000 -e \"MONGO_URI=URI\" -e GOOGLE_CLIENT_ID=$(OAUTH_CLIENT_ID) -e GOOGLE_CLIENT_SECRET=$(call get-secret,google_oauth_client_secret) $(REMOTE_TAG)'
